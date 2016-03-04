@@ -1,0 +1,218 @@
+//rely on fancybox
+
+(function ($) {
+    $.fn.extend({
+        guguDialogs: function (msg, status) {
+            //console.log('============Gugu Library============');
+            //console.log(msg);
+            var icon = 'l-lightbox-type-ok';
+
+            if (status === "success")
+            {
+                icon = 'l-lightbox-type-ok';
+            } else if (status === "fail") {
+                icon = 'l-lightbox-type-fail';
+            } else if (status === "alert") {
+                icon = 'l-lightbox-type-alert';
+            }
+            
+            try{
+                if ($('#gugu_msg').length === 0) {
+                    $(this).append('<div style="display:none" id="gugu_msg">' +
+                                       '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                       '<div class="panel panel-center-no-block clearfix">' +
+                                       '<a href="javascript:$.fancybox.close();" class="GrayBtn">確定</a>' +
+                                       '</div></div>');
+                } else {
+                    this.guguClean();
+                    $(this).append('<div style="display:none" id="gugu_msg">' +
+                                       '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                       '<div class="panel panel-center-no-block clearfix">' +
+                                       '<a href="javascript:$.fancybox.close();" class="GrayBtn">確定</a>' +
+                                       '</div></div>');
+                }
+            
+                if ($('#gugu_msg').length > 0)
+                {
+                    $.fancybox('#gugu_msg');
+                }
+            }
+            catch (e) {
+                console.warn(e);
+            }
+
+        }, guguDialogs2: function (msg, status, callback) {
+
+            var icon = 'l-lightbox-type-ok';
+            if (status === "success") {
+                icon = 'l-lightbox-type-ok';
+            } else if (status === "fail") {
+                icon = 'l-lightbox-type-fail';
+            } else if (status === "alert") {
+                icon = 'l-lightbox-type-alert';
+            }
+
+            try {
+                if ($('#gugu_msg').length === 0) {
+                    $(this).append('<div style="display:none" id="gugu_msg">' +
+                                       '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                       '<div class="panel panel-center-no-block clearfix">' +
+                                       '<a class="GrayBtn" id="sendCallback">確定</a>' +
+                                       '</div></div>');
+                } else {
+                    this.guguClean();
+                    $(this).append('<div style="display:none" id="gugu_msg">' +
+                                       '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                       '<div class="panel panel-center-no-block clearfix">' +
+                                       '<a class="GrayBtn" id="sendCallback">確定</a>' +
+                                       '</div></div>');
+                }
+
+                if ($('#gugu_msg').length > 0) {
+                    $.fancybox('#gugu_msg');
+                    $('#sendCallback').off().on('click', callback);
+                }
+            }
+            catch (e) {
+                console.warn(e);
+            }
+
+        }, guguDialogsFunc: function (msg, status, callback) {
+
+            var icon = 'l-lightbox-type-ok';
+            if (status === "success") {
+                icon = 'l-lightbox-type-ok';
+            } else if (status === "fail") {
+                icon = 'l-lightbox-type-fail';
+            } else if (status === "alert") {
+                icon = 'l-lightbox-type-alert';
+            }
+
+            try{
+                if ($('#gugu_msgfun').length === 0) {
+                    $(this).append('<div style="display:none" id="gugu_msgfun">' +
+                                        '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                        '<div class="panel panel-center-no-block clearfix">' +
+                                        '<a class="GrayBtn red" id="sendCallback">確定</a>' +
+                                        '<a href="javascript:$.fancybox.close();" class="GrayBtn">取消</a>' +
+                                        '<a class="button secondary radius btnPaid" style="display:none">等待中...</a>' +
+                                        '</div></div>');
+                } else {
+                    this.guguClean();
+                    $(this).append('<div style="display:none" id="gugu_msgfun">' +
+                                        '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                        '<div class="panel panel-center-no-block clearfix">' +
+                                        '<a class="GrayBtn red" id="sendCallback">確定</a>' +
+                                        '<a href="javascript:$.fancybox.close();" class="GrayBtn">取消</a>' +
+                                        '<a class="button secondary radius btnPaid" style="display:none">等待中...</a>' +
+                                        '</div></div>');
+                }
+            
+                if ($('#gugu_msgfun').length > 0) {
+                    $.fancybox('#gugu_msgfun');
+                    $('#sendCallback').off().on('click', callback);
+                }
+            } catch (e) {
+                console.warn(e);
+            }       
+
+        }, guguDialogsFunc2: function (msg, status, callback, callback2) {
+
+            var icon = 'l-lightbox-type-ok';
+            if (status === "success") {
+                icon = 'l-lightbox-type-ok';
+            } else if (status === "fail") {
+                icon = 'l-lightbox-type-fail';
+            } else if (status === "alert") {
+                icon = 'l-lightbox-type-alert';
+            }
+
+            try{
+                if ($('#gugu_msgfun').length === 0) {
+                    $(this).append('<div style="display:none" id="gugu_msgfun">' +
+                                        '<p class="l-lightbox-type ' + icon + '">' + msg + '</p>' +
+                                        '<div class="panel panel-center-no-block clearfix">' +
+                                        '<a class="GrayBtn red" id="sendCallback">確定</a>' +
+                                        '<a class="GrayBtn" id="cancelCallback">取消</a>' +
+                                        '<a class="button secondary radius btnPaid" style="display:none">等待中...</a>' +
+                                        '</div></div>');
+                }
+            
+                if ($('#gugu_msgfun').length > 0) {
+                    $.fancybox('#gugu_msgfun');
+                    $('#sendCallback').off().on('click', callback);
+                    $('#cancelCallback').off().on('click', callback2);
+                }
+            } catch (e) {
+                console.warn(e);
+            }       
+
+        }, guguDialogsCustom: function (content, status, callback) {
+
+            var icon = 'l-lightbox-type-ok';
+            if (status === "success") {
+                icon = 'l-lightbox-type-ok';
+            } else if (status === "fail") {
+                icon = 'l-lightbox-type-fail';
+            } else if (status === "alert") {
+                icon = 'l-lightbox-type-alert';
+            }
+
+            try {
+                if ($('#gugu_msgfun').length === 0) {
+                    $(this).append('<div style="display:none" id="gugu_msgfun">' +
+                                    '<div class="panel panel-center-no-block clearfix">' +
+                                    '<a class="GrayBtn red" id="sendCallback">確定</a>' +
+                                    '<a href="javascript:$.fancybox.close();" class="GrayBtn">取消</a>' +
+                                    '<a class="button secondary radius btnPaid" style="display:none">等待中...</a>' +
+                                    '</div></div>');
+
+                    $('#gugu_msgfun').prepend(content);
+                }
+
+                if ($('#gugu_msgfun').length > 0) {
+                    $.fancybox('#gugu_msgfun');
+                    $('#sendCallback').off().on('click', callback);
+                }
+            } catch (e) {
+                console.warn(e);
+            }
+
+        }, guguDialogsEmpty: function (content) {
+
+            try {
+                if ($('#gugu_msgfun').length === 0) {
+                    $(this).append('<div style="display:none" id="gugu_msgfun">' +
+                                        '<div class="panel panel-center-no-block clearfix">' +
+                                        '</div></div>');
+
+                    $('#gugu_msgfun').prepend(content);
+                }
+
+                if ($('#gugu_msgfun').length > 0) {
+                    $.fancybox('#gugu_msgfun');
+                }
+            } catch (e) {
+                console.warn(e);
+            }
+
+        }, guguClean: function () {
+            console.log('clean');
+            try{
+                $.fancybox.close();
+                if ($('#gugu_msg').length > 0) {
+                    //console.log('gugu_msg del');
+                    $('#gugu_msg').remove();
+                }
+                if ($('#gugu_msgfun').length > 0) {
+                    //console.log('gugu_msgfun del');
+                    $('#gugu_msgfun').remove();
+                }
+            } catch (e) {
+                console.warn(e);
+            }
+
+        },
+
+    });
+})(jQuery);
