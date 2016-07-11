@@ -1,4 +1,4 @@
-class Sort {
+class SortMethod {
   
   // 快速排序(Quicksort), https://zh.wikipedia.org/wiki/%E6%9D%B1%E5%B0%BC%C2%B7%E9%9C%8D%E7%88%BE
   static quickSort(arr) {
