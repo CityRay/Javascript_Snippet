@@ -15,9 +15,22 @@ class SortMethod {
         }else{
             right.push(arr[i]);
         }
-    }
-    
+    }    
     return this.quickSort(left).concat([pivot],this.quickSort(right));
+  }
+  
+  // 根據 Object Key 進行排序
+  static sortByObjKey(arr, key) {
+    arr.sort(function (a, b) {
+        if (a[key] < b[key]) {
+            return -1;
+        }
+        if (a[key] > b[key]) {
+            return 1;
+        }
+        return 0;
+    });
+    return arr;
   }
   
 }
